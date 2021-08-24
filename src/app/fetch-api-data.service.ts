@@ -41,14 +41,14 @@ export class FetchAPiDataService {
           Authorization: 'Bearer ' + token,
         })
     }).pipe(
-      map(this.extractResponseData),
+
       catchError(this.handleError)
     );
   }
-  private extractResponseData(res: Response): any {
-    const body = res;
-    return body || {};
-  }
+  // private extractResponseData(res: Response): any {
+  //   const body = res;
+  //   return body || {};
+  // }
 
   //Get Director
 
@@ -59,7 +59,7 @@ export class FetchAPiDataService {
         {
           Authorization: 'Bearer ' + token,
         })
-    }).pipe(map(this.extractResponseData),
+    }).pipe(
       catchError(this.handleError)
     );
   }
@@ -75,7 +75,6 @@ export class FetchAPiDataService {
           Authorization: 'Bearer ' + token,
         })
     }).pipe(
-      map(this.extractResponseData),
       catchError(this.handleError)
     );
 
@@ -89,7 +88,7 @@ export class FetchAPiDataService {
           Authorization: 'Bearer ' + token,
         }),
       })
-      .pipe(map(this.extractResponseData), catchError(this.handleError));
+      .pipe(catchError(this.handleError));
   }
   // Adds user favorite movie
   addFavorite(id: string): Observable<any> {
@@ -101,7 +100,7 @@ export class FetchAPiDataService {
           Authorization: 'Bearer ' + token,
         })
     }).pipe(
-      map(this.extractResponseData),
+
       catchError(this.handleError)
     );
   }
@@ -117,7 +116,7 @@ export class FetchAPiDataService {
           Authorization: 'Bearer ' + token,
         })
     }).pipe(
-      map(this.extractResponseData),
+
       catchError(this.handleError)
     );
   }
@@ -138,7 +137,7 @@ export class FetchAPiDataService {
           Authorization: 'Bearer ' + token,
         })
     }).pipe(
-      map(this.extractResponseData),
+
       catchError(this.handleError)
     );
   }
@@ -152,7 +151,7 @@ export class FetchAPiDataService {
           Authorization: 'Bearer ' + token,
         })
     }).pipe(
-      map(this.extractResponseData),
+
       catchError(this.handleError)
     );
   }
