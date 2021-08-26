@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserProfileDeleteComponent } from '../user-profile-delete/user-profile-delete.component';
 import { UserProfileUpdateComponent } from '../user-profile-update/user-profile-update.component';
-import { FetchAPiDataService } from '../fetch-api-data.service';
+import { FetchApiDataService } from '../fetch-api-data.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -25,7 +25,7 @@ export class UserProfileComponent implements OnInit {
    * @param snackBar
     
    */
-  constructor(public fetchApiData: FetchAPiDataService,
+  constructor(public fetchApiData: FetchApiDataService,
     public dialog: MatDialog,
     public snackBar: MatSnackBar,) { }
   /**

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 // API Call
-import { FetchAPiDataService } from '../fetch-api-data.service';
+import { FetchApiDataService } from '../fetch-api-data.service';
 
 // Angular Material
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -18,7 +18,7 @@ export class UserProfileDeleteComponent implements OnInit {
    * @param snackBar
    * @param router
    */
-  constructor(public fetchApiData: FetchAPiDataService,
+  constructor(public fetchApiData: FetchApiDataService,
     public snackBar: MatSnackBar,
     private router: Router) { }
 

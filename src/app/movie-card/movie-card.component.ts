@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FetchAPiDataService } from '../fetch-api-data.service';
+import { FetchApiDataService } from '../fetch-api-data.service';
 import { MovieGenreComponent } from '../movie-genre/movie-genre.component';
 import { MovieDirectorComponent } from '../movie-director/movie-director.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -17,7 +17,7 @@ export class MovieCardComponent {
   movies: any[] = [];
   favoritemovies: any[] = [];
 
-  constructor(public fetchApiData: FetchAPiDataService,
+  constructor(public fetchApiData: FetchApiDataService,
     public dialog: MatDialog,
     public snackBar: MatSnackBar,) { }
   /**
@@ -83,14 +83,14 @@ export class MovieCardComponent {
     */
   getDirector(name: string,
     bio: string,
-    birth: string,
-    death: string): void {
+    birth: string
+  ): void {
     this.dialog.open(MovieDirectorComponent, {
       data: {
         Name: name,
         Bio: bio,
         Birth: birth,
-        Death: death
+
       }
     });
   }

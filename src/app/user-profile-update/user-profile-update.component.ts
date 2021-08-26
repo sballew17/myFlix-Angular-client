@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-import { FetchAPiDataService } from '../fetch-api-data.service'
+import { FetchApiDataService } from '../fetch-api-data.service'
 @Component({
   selector: 'app-user-profile-update',
   templateUrl: './user-profile-update.component.html',
@@ -25,7 +25,7 @@ export class UserProfileUpdateComponent implements OnInit {
    * @param dialogRef
    * @param snackBar
    */
-  constructor(public fetchApiData: FetchAPiDataService, public dialogRef: MatDialogRef<UserProfileUpdateComponent>,
+  constructor(public fetchApiData: FetchApiDataService, public dialogRef: MatDialogRef<UserProfileUpdateComponent>,
     public snackBar: MatSnackBar) { }
 
   ngOnInit(): void {

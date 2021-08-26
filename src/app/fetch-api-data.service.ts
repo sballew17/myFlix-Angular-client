@@ -6,21 +6,35 @@ import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 const apiUrl = 'https://sam-superhero-movie-project.herokuapp.com/';
+
+//User Registration
 @Injectable({
   providedIn: 'root'
 })
-export class FetchAPiDataService {
-  // Inject the HttpClient module to the constructor params
-  // This will provide HttpClient to the entire class, making it available via this.http
-  constructor(private http: HttpClient, private router: Router) {
-  }
-  // Making the api call for the user registration endpoint
+
+export class FetchApiDataService {
+  /**
+ *
+ * @param http
+ * @param router
+ */
+  constructor(private http: HttpClient, private router: Router) { }
+  /**
+ * API call to register new user account
+ * @param userDetails
+ * @returns
+ */
   userRegistration(userDetails: any): Observable<any> {
-    console.log(userDetails);
     return this.http.post(apiUrl + 'users', userDetails).pipe(
       catchError(this.handleError)
     );
   }
+  /**
+   * Handles user login HTTP request
+   * @param userDetails
+   * @returns
+   */
+  //User Login
   userLogin(userDetails: any): Observable<any> {
     console.log(userDetails);
     return this.http.post(apiUrl + 'login', userDetails)
@@ -41,28 +55,29 @@ export class FetchAPiDataService {
           Authorization: 'Bearer ' + token,
         })
     }).pipe(
-
+      map(this.extractResponseData),
       catchError(this.handleError)
     );
   }
-  // private extractResponseData(res: Response): any {
-  //   const body = res;
-  //   return body || {};
-  // }
 
   //Get Director
 
   getDirector(): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.get(apiUrl + '/director/:Name', {
+    return this.http.get(apiUrl + 'director/:Name', {
       headers: new HttpHeaders(
         {
           Authorization: 'Bearer ' + token,
         })
     }).pipe(
+      map(this.extractResponseData),
       catchError(this.handleError)
     );
   }
+
+
+
+
 
   //Get Genre
 
@@ -75,20 +90,22 @@ export class FetchAPiDataService {
           Authorization: 'Bearer ' + token,
         })
     }).pipe(
+      map(this.extractResponseData),
       catchError(this.handleError)
     );
 
   }
 
+
   getUser(user: any): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http
-      .get(apiUrl + `users/${user}`, {
+      .get(apiUrl + `users`, {
         headers: new HttpHeaders({
           Authorization: 'Bearer ' + token,
         }),
       })
-      .pipe(catchError(this.handleError));
+      .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
   // Adds user favorite movie
   addFavorite(id: string): Observable<any> {
@@ -100,7 +117,7 @@ export class FetchAPiDataService {
           Authorization: 'Bearer ' + token,
         })
     }).pipe(
-
+      map(this.extractResponseData),
       catchError(this.handleError)
     );
   }
@@ -116,7 +133,7 @@ export class FetchAPiDataService {
           Authorization: 'Bearer ' + token,
         })
     }).pipe(
-
+      map(this.extractResponseData),
       catchError(this.handleError)
     );
   }
@@ -137,7 +154,7 @@ export class FetchAPiDataService {
           Authorization: 'Bearer ' + token,
         })
     }).pipe(
-
+      map(this.extractResponseData),
       catchError(this.handleError)
     );
   }
@@ -151,25 +168,23 @@ export class FetchAPiDataService {
           Authorization: 'Bearer ' + token,
         })
     }).pipe(
-
+      map(this.extractResponseData),
       catchError(this.handleError)
     );
   }
 
-  // Non-typed response extraction
-  private extractResponseData(res: Response): any {
+  private extractResponseData(res: Response | Object): any {
     const body = res;
     return body || {};
-  }
-  private handleError(error: HttpErrorResponse): any {
+  } private handleError(error: HttpErrorResponse): any {
     if (error.error instanceof ErrorEvent) {
       console.error('Some error occurred:', error.error.message);
     } else {
       console.error(
-        `Error Status code ${error.status}, ` +
-        `Error body is: ${error.error}`);
+        `Error Status code ${error.status}, ` + `Error body is: ${error.error}`
+      );
     }
-    return throwError(
-      'Something bad happened; please try again later.');
+    return throwError('Something bad happened; please try again later.');
   }
+
 }
