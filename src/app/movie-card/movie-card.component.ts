@@ -47,8 +47,9 @@ export class MovieCardComponent {
     });
   }
 
-  isFavorite(movieID: string) {
-    return this.favoritemovies.includes(movieID);
+  isFavorite(movieId: string) {
+ 
+    return this.favoritemovies;
   }
 
   adddeletefavorite(movieId: string): any {
@@ -79,8 +80,7 @@ export class MovieCardComponent {
     * @param name - director name
     * @param bio - director biography
     * @param birth - director date of birth
-    * @param death - director date of death
-    */
+      */
   getDirector(name: string,
     bio: string,
     birth: string
